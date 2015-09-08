@@ -40,4 +40,19 @@ func TestMixer(t *testing.T) {
 
 	sql = "show proxy abc"
 	testParse(t, sql)
+
+	sql = "show databases"
+	testParse(t, sql)
+
+	sql = "show databases like 'foo'"
+	testParse(t, sql)
+
+	sql = "SHOW VARIABLES"
+	testParse(t, sql)
+	
+	sql = "show variables"
+	testParse(t, sql)
+
+	sql = "show variables LIKE 'foo'"
+	testParse(t, sql)
 }
