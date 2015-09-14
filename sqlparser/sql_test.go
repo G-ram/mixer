@@ -4,12 +4,12 @@ import (
 	"testing"
 )
 
-func testParse(t *testing.T, sql string) {
-	_, err := Parse(sql)
+func testParse(t *testing.T, sql string) Statement{
+	stmt, err := Parse(sql)
 	if err != nil {
-		t.Fatal(err)
+		t.Fatalf("sql: %s err: %s", sql, err)
 	}
-
+	return stmt
 }
 
 func TestSet(t *testing.T) {
@@ -55,4 +55,36 @@ func TestMixer(t *testing.T) {
 
 	sql = "show variables LIKE 'foo'"
 	testParse(t, sql)
+
+	sql = "show columns from 'foo'"
+	testParse(t, sql)
+
+	sql = "show columns in 'foo'"
+	testParse(t, sql)
+	if testParse(t, sql).(*Show).Modifier != "" {
+		t.Fatal("modifier wrong")
+	}
+
+	sql = "show full columns from 'foo'"
+	if testParse(t, sql).(*Show).Modifier != "full" {
+		t.Fatal("modifier wrong")
+	}
+
+	sql = "show columns from 'foo' from 'bar'"
+	testParse(t, sql)
+	if String(testParse(t, sql).(*Show).From) != "'foo'" {
+		t.Fatalf("table wrong: %s", String(testParse(t, sql).(*Show).From))
+	}
+	if String(testParse(t, sql).(*Show).DBFilter) != "'bar'" {
+		t.Fatalf("db wrong: %s", String(testParse(t, sql).(*Show).DBFilter))
+	}
+
+	sql = "show columns in 'foo' in 'bar'"
+	testParse(t, sql)
+	if String(testParse(t, sql).(*Show).From) != "'foo'" {
+		t.Fatalf("table wrong: %s", String(testParse(t, sql).(*Show).From))
+	}
+	if String(testParse(t, sql).(*Show).DBFilter) != "'bar'" {
+		t.Fatalf("db wrong: %s", String(testParse(t, sql).(*Show).DBFilter))
+	}
 }

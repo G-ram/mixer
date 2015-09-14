@@ -98,7 +98,7 @@ var (
 
 // Show
 %token <empty> SHOW
-%token <empty> DATABASES TABLES PROXY VARIABLES
+%token <empty> DATABASES TABLES PROXY VARIABLES FULL COLUMNS
 
 // DDL Tokens
 %token <empty> CREATE ALTER DROP RENAME
@@ -162,7 +162,8 @@ var (
 
 %type <valExpr> from_opt
 %type <expr> like_or_where_opt
-
+%type <valExpr> show_from_in show_from_in_opt
+%type <str> show_full
 %%
 
 any_command:
@@ -285,6 +286,39 @@ admin_statement:
     $$ = &Admin{Name : $2, Values : $4}
   }
 
+show_from_in:
+  FROM value_expression
+  {
+    $$ = $2
+  }
+| IN value_expression
+  {
+    $$ = $2
+  }
+
+show_from_in_opt:
+  {
+    $$ = nil
+  }
+| FROM value_expression
+  {
+    $$ = $2
+  }
+| IN value_expression
+  {
+    $$ = $2
+  }
+
+show_full:
+  {
+    $$ = AST_SHOW_NO_MOD
+  }
+| FULL
+  {
+    $$ = AST_SHOW_FULL
+  }
+  
+
 show_statement:
   SHOW DATABASES like_or_where_opt 
   {
@@ -301,6 +335,10 @@ show_statement:
 | SHOW PROXY sql_id from_opt like_or_where_opt
   {
     $$ = &Show{Section: "proxy", Key: string($3), From: $4, LikeOrWhere: $5}
+  }
+| SHOW show_full COLUMNS show_from_in show_from_in_opt
+  {
+    $$ = &Show{Section: "columns", From: $4, Modifier: $2, DBFilter: $5}
   }
 
 create_statement:
