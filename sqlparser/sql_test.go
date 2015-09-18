@@ -22,6 +22,14 @@ func TestSimpleSelect(t *testing.T) {
 	testParse(t, sql)
 }
 
+func TestFunnyNames(t *testing.T) {
+	sql := "select * from columns"
+	testParse(t, sql)
+
+	sql = "select * from tables"
+	testParse(t, sql)
+}
+
 func TestMixer(t *testing.T) {
 	sql := `admin upnode("node1", "master", "127.0.0.1")`
 	testParse(t, sql)
