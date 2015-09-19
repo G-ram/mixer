@@ -589,6 +589,14 @@ ID
   {
     $$ = &TableName{Name: []byte("tables")}
   }
+| ID '.' COLUMNS // hack for tokenizer, maybe cleaner way
+  {
+    $$ = &TableName{Qualifier: $1, Name: []byte("columns")}
+  }
+| ID '.' TABLES // hack for tokenizer, maybe cleaner way
+  {
+    $$ = &TableName{Qualifier: $1, Name: []byte("tables")}
+  }
 
 dml_table_expression:
 ID

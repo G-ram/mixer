@@ -26,7 +26,13 @@ func TestFunnyNames(t *testing.T) {
 	sql := "select * from columns"
 	testParse(t, sql)
 
+	sql = "select * from foo.columns"
+	testParse(t, sql)
+
 	sql = "select * from tables"
+	testParse(t, sql)
+
+	sql = "select * from foo.tables"
 	testParse(t, sql)
 }
 
