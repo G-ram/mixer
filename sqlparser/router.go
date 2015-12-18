@@ -5,7 +5,7 @@
 package sqlparser
 
 import (
-	"github.com/siddontang/mixer/router"
+	"github.com/deafgoat/mixer/router"
 	"sort"
 	"strconv"
 )

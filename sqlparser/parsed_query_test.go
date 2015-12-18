@@ -7,7 +7,7 @@ package sqlparser
 import (
 	"testing"
 
-	"github.com/siddontang/mixer/sqltypes"
+	"github.com/deafgoat/mixer/sqltypes"
 )
 
 func TestParsedQuery(t *testing.T) {

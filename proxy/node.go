@@ -2,9 +2,9 @@ package proxy
 
 import (
 	"fmt"
+	"github.com/deafgoat/mixer/client"
+	"github.com/deafgoat/mixer/config"
 	"github.com/siddontang/go-log/log"
-	"github.com/siddontang/mixer/client"
-	"github.com/siddontang/mixer/config"
 	"sync"
 	"time"
 )

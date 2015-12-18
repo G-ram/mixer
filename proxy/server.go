@@ -1,8 +1,8 @@
 package proxy
 
 import (
+	"github.com/deafgoat/mixer/config"
 	"github.com/siddontang/go-log/log"
-	"github.com/siddontang/mixer/config"
 
 	"net"
 	"runtime"

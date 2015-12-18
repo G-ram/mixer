@@ -1,8 +1,8 @@
 package sqlparser
 
 import (
-	"github.com/siddontang/mixer/config"
-	"github.com/siddontang/mixer/router"
+	"github.com/deafgoat/mixer/config"
+	"github.com/deafgoat/mixer/router"
 
 	"fmt"
 	"testing"

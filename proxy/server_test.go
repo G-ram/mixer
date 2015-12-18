@@ -1,8 +1,8 @@
 package proxy
 
 import (
-	"github.com/siddontang/mixer/client"
-	"github.com/siddontang/mixer/config"
+	"github.com/deafgoat/mixer/client"
+	"github.com/deafgoat/mixer/config"
 	"sync"
 	"testing"
 	"time"

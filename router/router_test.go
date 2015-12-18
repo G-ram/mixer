@@ -1,8 +1,8 @@
 package router
 
 import (
+	"github.com/deafgoat/mixer/config"
 	"github.com/siddontang/go-yaml/yaml"
-	"github.com/siddontang/mixer/config"
 	"testing"
 )
 

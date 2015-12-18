@@ -2,7 +2,7 @@ package proxy
 
 import (
 	"fmt"
-	"github.com/siddontang/mixer/mysql"
+	"github.com/deafgoat/mixer/mysql"
 	"reflect"
 	"testing"
 )

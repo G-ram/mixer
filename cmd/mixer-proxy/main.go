@@ -2,9 +2,9 @@ package main
 
 import (
 	"flag"
+	"github.com/deafgoat/mixer/config"
+	"github.com/deafgoat/mixer/proxy"
 	"github.com/siddontang/go-log/log"
-	"github.com/siddontang/mixer/config"
-	"github.com/siddontang/mixer/proxy"
 	"os"
 	"os/signal"
 	"runtime"

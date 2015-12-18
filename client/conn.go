@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	. "github.com/siddontang/mixer/mysql"
+	. "github.com/deafgoat/mixer/mysql"
 	"net"
 	"strings"
 	"time"
